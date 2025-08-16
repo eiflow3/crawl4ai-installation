@@ -71,3 +71,20 @@ This module contains the endpoints for the lgus collection.
     "https://en.wikipedia.org/wiki/General_Trias"
   ]
   ```
+
+- **`GET /lgus/names`**
+  - Returns a list of all LGU names from the database.
+  - Response Model: `List[str]`
+
+  **Example Request:**
+  ```bash
+  curl -X GET http://localhost:8000/lgus/names
+  ```
+
+  **Example Response:**
+  ```json
+  [
+    "Noveleta",
+    "General Trias"
+  ]
+  ```

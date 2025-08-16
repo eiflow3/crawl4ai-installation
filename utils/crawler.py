@@ -71,9 +71,9 @@ def find_urls_with_string(results_dict, target_strings, keyword_category):
                 context_words = start_words + target_string.split() + end_words
                 context = " ".join(context_words)
                 
-                print("--- Start of Context ---")
-                print(context)
-                print("--- End of Context ---")
+                # print("--- Start of Context ---")
+                # print(context)
+                # print("--- End of Context ---")
                 
                 found_urls_with_context.append((url, keyword_category, context))
                 break # Break after finding the first target string in this content for this URL

@@ -46,3 +46,15 @@ async def get_all_lgu_pages():
         if 'pages' in lgu and isinstance(lgu['pages'], list):
             pages.extend(lgu['pages'])
     return pages
+
+@router.get("/lgus/names", response_model=List[str])
+async def get_all_lgu_names():
+    """
+    Endpoint to get all LGU names from the database.
+    """
+    lgus_collection = get_lgus_collection()
+    if lgus_collection is None:
+        return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"error": "Database connection not available"})
+    
+    lgu_names = [lgu.get("LGU") for lgu in lgus_collection.find({}, {"LGU": 1, "_id": 0}) if lgu.get("LGU")]
+    return JSONResponse(status_code=status.HTTP_200_OK, content=lgu_names)
