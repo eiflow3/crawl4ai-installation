@@ -61,19 +61,19 @@ def find_urls_with_string(results_dict, target_strings, keyword_category):
                 
                 before_text = content[:target_start_index]
                 before_words = before_text.split()
-                start_words = before_words[-50:]
+                start_words = before_words[-20:]
                 
                 after_text_start_index = target_start_index + len(target_string)
                 after_text = content[after_text_start_index:]
                 after_words = after_text.split()
-                end_words = after_words[:50]
+                end_words = after_words[:20]
                 
                 context_words = start_words + target_string.split() + end_words
                 context = " ".join(context_words)
                 
-                # print("--- Start of Context ---")
-                # print(context)
-                # print("--- End of Context ---")
+                print("--- Start of Context ---")
+                print(context)
+                print("--- End of Context ---")
                 
                 found_urls_with_context.append((url, keyword_category, context))
                 break # Break after finding the first target string in this content for this URL

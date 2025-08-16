@@ -6,11 +6,19 @@ HIT_STRINGS = {
         "Walang Pasok",
         "Classes Suspended",
         "Class Suspended",
-        "#walangpasok"
+        "#walangpasok",
+        "#WalangPasok",
+        "#classsuspended",
+        "#classsuspension",
     ],
     "emergency_alerts": [
         "Warning",
         "Emergency",
+        "#emergency",
     ],
-    "announcement": ["Subscribe", 'web3'],
+    "announcement": [
+        "Subscribe",
+        "#announcement",
+        "#Announcement",
+    ],
 }

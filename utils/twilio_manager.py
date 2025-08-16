@@ -46,7 +46,9 @@ def send_sms_notification(url, keyword_category, context):
     if not subscribed_numbers:
         print(f"No users subscribed to LGU: {lgu_name}")
         return
+
     mock_message_generation_from_llm = generate_sms_summary(context=context, keyword_category=keyword_category)
+
     # Generate SMS message using LLM
     message_body = f"[PulsePH] ALERT: {mock_message_generation_from_llm} Source LGU: {lgu_name} ({url})"
 

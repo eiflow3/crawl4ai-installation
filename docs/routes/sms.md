@@ -35,3 +35,10 @@ This module defines API endpoints related to SMS message management.
     - `200 OK`: Returns the latest message data.
     - `404 Not Found`: If no messages are found for the given mobile number.
     - `500 Internal Server Error`: If the database connection is not available or retrieval fails.
+
+- **DELETE `/sms`**
+  - **Summary:** Delete all documents in the SMS collection.
+  - **Description:** Deletes all documents from the `sms` collection, but keeps the collection itself.
+  - **Responses:**
+    - `200 OK`: Returns a success message indicating all documents have been deleted.
+    - `500 Internal Server Error`: If the database connection is not available or deleting documents fails.

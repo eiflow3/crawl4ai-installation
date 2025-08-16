@@ -27,7 +27,7 @@ This module contains the endpoints for the users collection.
   ```
 
 - **`POST /users`**
-  - Creates a new user.
+  - Creates a new user. If a user with the same number already exists, the existing user document will be returned.
   - Request Body: `User`
   - Response Model: `User`
 
@@ -42,7 +42,7 @@ This module contains the endpoints for the users collection.
   }'
   ```
 
-  **Example Response:**
+  **Example Response (New User Created - 201 Created):**
   ```json
   {
     "_id": "60d5ec49f72e6e4b28ef1b90",
@@ -52,3 +52,21 @@ This module contains the endpoints for the users collection.
     ]
   }
   ```
+
+  **Example Response (Existing User Returned - 200 OK):**
+  ```json
+  {
+    "_id": "60d5ec49f72e6e4b28ef1b90",
+    "number": "+639817582216",
+    "subscribed_lgus": [
+      "General Trias"
+    ]
+  }
+  ```
+
+- **`DELETE /users`**
+  - **Summary:** Delete all documents in the Users collection.
+  - **Description:** Deletes all documents from the `users` collection, but keeps the collection itself.
+  - **Responses:**
+    - `200 OK`: Returns a success message indicating all documents have been deleted.
+    - `500 Internal Server Error`: If the database connection is not available or deleting documents fails.

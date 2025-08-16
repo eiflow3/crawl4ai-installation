@@ -48,7 +48,7 @@ async def get_latest_sms_for_number(mobile_number: str):
     try:
         # Find the latest message where the mobile_number is in the subscribed_numbers array
         message = sms_collection.find_one(
-            {"subscribed_numbers": mobile_number},
+            {"subscribed_numbers": f"+{mobile_number}"},
             sort=[("created_at", -1)] # Sort by created_at in descending order to get the latest
         )
         
@@ -60,6 +60,18 @@ async def get_latest_sms_for_number(mobile_number: str):
                 del message["subscribed_numbers"]
             return {"message": "Latest message retrieved successfully", "data": message}
         else:
-            raise HTTPException(status_code=404, detail="No messages found for this mobile number.")
+            return {"message": "No messages found for this mobile number.", "data": {}}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve message: {e}")
+
+@router.delete("/sms", summary="Drop all messages in the SMS collection")
+async def drop_sms_collection():
+    sms_collection = get_sms_collection()
+    if sms_collection is None:
+        raise HTTPException(status_code=500, detail="Database connection not available.")
+    
+    try:
+        sms_collection.delete_many({})
+        return {"message": "All documents in SMS collection deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to drop SMS collection: {e}")

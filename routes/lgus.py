@@ -44,7 +44,7 @@ async def get_all_lgu_pages():
     pages = []
     for lgu in lgus_collection.find():
         if 'pages' in lgu and isinstance(lgu['pages'], list):
-            pages.extend(lgu['pages'])
+            pages.extend(lgu['pages'])                                                                                                                  
     return pages
 
 @router.get("/lgus/names", response_model=List[str])
